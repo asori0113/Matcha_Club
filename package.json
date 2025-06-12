@@ -1,0 +1,20 @@
+{
+  "name": "matcha_club",
+  "version": "1.0.0",
+  "description": "One of my friends club website's",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asori0113/Matcha_Club.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asori0113/Matcha_Club/issues"
+  },
+  "homepage": "https://github.com/asori0113/Matcha_Club#readme"
+}
