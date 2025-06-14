@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/asori0113/Matcha_Club/issues"
   },
-  "homepage": "https://github.com/asori0113/Matcha_Club#readme"
+  "homepage": "https://github.com/asori0113/Matcha_Club#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "mongoose": "^8.15.1"
+  }
 }
