@@ -24,6 +24,9 @@ class User {
         this.isVerified = isVerified;
         this.createdAt = createdAt;
     }
+
+    //save user instance
+    
 }
 
 module.exports = User;

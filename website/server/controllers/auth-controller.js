@@ -1,5 +1,5 @@
-const userService = require('../services/hash-service');
-
+const passService = require('../services/pass-service');
+const { createUser } = require('./u')
 exports.signup = async (req, res) => {
     try {
         const userId = await userService.createUser(req.body);

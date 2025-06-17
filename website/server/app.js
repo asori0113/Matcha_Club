@@ -1,11 +1,24 @@
+/**
+ * Starts app based on enveloper configurations
+ */
+
 const express = require('express');
 const app = express();
-const authRoutes = require('./server/routes/authRoutes');
+const connectDB = require('./database-connection')
+const authRoutes = require('./routes/auth-route');
 
-//parses json request bodies
+// Configure enveloper
+require('dotenv').config();
+
+// Connect to DataBase
+connectDB();
+
+// Middleware
 app.use(express.json());
 
-//mounts routes
+// Routes
 app.use('/auth', authRoutes);
 
-app.listen(3000, () => console.log('Server started on port 3000'))
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log('Server running on port ${PORT}'));
