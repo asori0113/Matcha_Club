@@ -8,6 +8,7 @@ const { ObjectId } = require('mongodb');
 
 class User {
     constructor({
+        _id = new ObjectId(), 
         username, 
         email, 
         password, 
@@ -16,6 +17,7 @@ class User {
         isVerified = false, 
         createdAt = new Date(),
      }) {
+        this._id = typeof _id === 'string' ? new ObjectId(_id) : _id;
         this.username = username.trim();
         this.email = email.trim().toLowerCase();
         this.password = password;

@@ -1,11 +1,20 @@
 const passService = require('../services/pass-service');
-const { createUser } = require('./u')
+const { createUser } = require('../services/auth-services')
+
 exports.signup = async (req, res) => {
+    const { username, email, password } = req.body;
+
+
     try {
-        const userId = await userService.createUser(req.body);
-        res.status(201).json({ userId });
+        const existingUser = await userService.findUserByEmail(email);
+        if (existingUser) {
+            return res.status(409).json({ error: 'Email already exist'})
+        }
+
+        const userId = await createUser(req.body);
+        res.status(201).json({ message: 'User Created', userId });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
