@@ -29,3 +29,6 @@ Contains business logic and interacts with databases. Manipulates databases and 
 Contains reusable functions for example hashing passwords for profile creation and forgot password 
 
 Make sure to modularize functionality and reusabilty as we go on.
+
+## Querying or Manipulating Data
+When you are querying data or manipulating data you want to reconnect to database

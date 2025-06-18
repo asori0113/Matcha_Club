@@ -1,7 +1,7 @@
 /**
  * Makes connection from client to database
  */
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 const MONGODB_URI = 'mongodb://localhost:27017/Matcha';
 const client = new MongoClient(MONGODB_URI);

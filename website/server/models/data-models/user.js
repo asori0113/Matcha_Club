@@ -4,7 +4,7 @@
  * For clarification 
  */
 
-const { ObjectId } = require('mongodb');
+import { ObjectId } from 'mongodb';
 
 class User {
     constructor({

@@ -1,6 +1,6 @@
-const { ObjectId } = require('mongodb');
-const connectToDB = require('../database-connection');
-const { hashPassword } = require('./pass-service')
+import { ObjectId } from 'mongodb';
+import connectToDB from '../database-connection';
+import { hashPassword } from './pass-service';
 
 
 async function createUser(userData) {
@@ -23,7 +23,10 @@ async function createUser(userData) {
 }
 
 async function findUserByEmail(email) {
-    return await User.findOne({ email });
+    const db = await connectToDB();
+    const users = db.collection('users');
+
+    return await users.findOne({ email: email.trim().toLowerCase() });
 }
 
 

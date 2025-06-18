@@ -1,9 +1,7 @@
-const passService = require('../services/pass-service');
-const { createUser } = require('../services/auth-services')
+import { createUser } from '../services/auth-services';
 
 exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
-
 
     try {
         const existingUser = await userService.findUserByEmail(email);
