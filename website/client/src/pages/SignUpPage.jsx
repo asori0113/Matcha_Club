@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { signup } from '../services/auth-service'
 import { useSignup } from '../hooks/useSignUp';
 import SignUpForm from '../components/SignUpForm';
 
 
 const SignUp = () => {
     const [form, setForm] = useState( {
-        name: '',
+        username: '',
         email: '', 
         password: ''
     });
@@ -38,4 +37,5 @@ const SignUp = () => {
 
 
 };
-
+ 
+export default SignUp;

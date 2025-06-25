@@ -2,7 +2,8 @@
  * Validation Checking middleware, only does parameter checks
  */
 
-const { userSignupSchema } = require('../models/validation-models/user-validation-model')
+import { userSignupSchema } from '../models/validation-models/user-validation-model';
+
 function validateSignup(req, res, next) {
     const error = userSignupSchema.validate(req.body, { abortEarly: false});
     

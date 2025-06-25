@@ -6,7 +6,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url'; //needed to get __dirname in es module
 
-import connectDB from './database-connection';
+import { connectToDB } from './database-connection';
 import authRoutes from './routes/auth-route';
 import dotenv from 'dotenv'
 
@@ -19,11 +19,8 @@ dotenv.config();
 
 const app = express();
 
-// Configure enveloper
-require('dotenv').config();
-
 // Connect to DataBase
-connectDB();
+await connectToDB();
 
 // Middleware parsing
 app.use(express.json());

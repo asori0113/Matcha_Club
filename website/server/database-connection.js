@@ -2,18 +2,23 @@
  * Makes connection from client to database
  */
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-const MONGODB_URI = 'mongodb://localhost:27017/Matcha';
-const client = new MongoClient(MONGODB_URI);
+dotenv.config();
+
+const uri = process.env.MONGODB_URI
+
+const client = new MongoClient(uri);
 
 let db;
 
-async function connectToDB() {
+export const connectToDB = async () => {
     if (!db) {
         await client.connect();
-        db = client.db('')
+        db = client.db('matcha_club')
+        console.log('✅ Connected to MongoDB');
     }
     return db;
 }
 
-module.exports = connectToDB;
+export const getDB = () => db;
