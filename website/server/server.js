@@ -6,9 +6,10 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url'; //needed to get __dirname in es module
 
-import { connectToDB } from './database-connection';
-import authRoutes from './routes/auth-route';
-import dotenv from 'dotenv'
+import { connectToDB } from './database-connection.js';
+import authRoutes from './routes/auth-route.js';
+import dotenv from 'dotenv';
+import cors from 'cors';
 
 // Sets up __dirname in ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +23,8 @@ const app = express();
 // Connect to DataBase
 await connectToDB();
 
+app.use(cors());
+
 // Middleware parsing
 app.use(express.json());
 
@@ -29,11 +32,11 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 
 // Serce React static files (after building front end)
-app.use(express.static(Path2D.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // All requests that serve React app (for client routing)
 app.get('*', (req, res) => {
-    res.sendFile(Path2D.join(__dirname, '../client', 'index.html'))
+    res.sendFile(path.join(__dirname, '../client', 'index.html'))
 });
 
 // Start server

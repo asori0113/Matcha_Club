@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "One of my friends club website's",
   "main": "index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "client:start": "npm run start --workspace = client",
-    "server:start": "npm run start --workspace = server",
+    "client:start": "cd client && npm start",
+    "server:start": "cd server && npm start",
     "start": "concurrently \"npm run client:start\" \"npm run server:start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +28,8 @@
     "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
     "mongoose": "^8.15.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
   }
 }

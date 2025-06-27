@@ -1,9 +1,9 @@
 import { ObjectId } from 'mongodb';
-import connectToDB from '../database-connection';
-import { hashPassword } from './pass-service';
+import { connectToDB } from '../database-connection.js';
+import { hashPassword } from './pass-service.js';
 
 
-async function createUser(userData) {
+export async function createUser(userData) {
     const db = await connectToDB();
     const users = db.collection('users');
     const hashedPassword = await hashPassword(userData.password);
@@ -22,12 +22,9 @@ async function createUser(userData) {
     return user._id;
 }
 
-async function findUserByEmail(email) {
+export async function findUserByEmail(email) {
     const db = await connectToDB();
     const users = db.collection('users');
 
     return await users.findOne({ email: email.trim().toLowerCase() });
 }
-
-
-module.exports = { createUser, findUserByEmail };

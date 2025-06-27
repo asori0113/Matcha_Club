@@ -1,12 +1,12 @@
 import express from 'express';
-import validateSignup from '../middleware/validation-middleware';
-import authController from '../controllers/auth-controller';
+import { validateSignup } from '../middleware/validation-middleware.js';
+import {signup, login, logout} from '../controllers/auth-controller.js';
 
 const router = express.Router();
 
-const authController = require('../../controllers/auth-controller');
-
 //Attaches controller to route handler
-router.post('/signup', validateSignup, authController.signup);
+router.post('/signup', validateSignup, signup);
+router.post('/login', login);
+router.post('/logout', logout);
 
-module.exports = router;
+export default router;

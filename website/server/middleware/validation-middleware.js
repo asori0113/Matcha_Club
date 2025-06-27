@@ -2,9 +2,9 @@
  * Validation Checking middleware, only does parameter checks
  */
 
-import { userSignupSchema } from '../models/validation-models/user-validation-model';
+import { userSignupSchema } from '../models/validation-models/user-validation-model.js';
 
-function validateSignup(req, res, next) {
+export function validateSignup(req, res, next) {
     const error = userSignupSchema.validate(req.body, { abortEarly: false});
     
     if (error) {
@@ -13,5 +13,3 @@ function validateSignup(req, res, next) {
     }
     next();
 }
-
-module.export = validateSignup;

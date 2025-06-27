@@ -1,6 +1,6 @@
-import { createUser } from '../services/auth-services';
+import { createUser } from '../services/auth-services.js';
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
@@ -16,7 +16,7 @@ exports.signup = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+export const login= async (req, res) => {
     try {
         const userID = await userService.setUser(req.body);
         res.status(200).json({ userID })
@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.logout = async (req, res) => {
+export const logout = async (req, res) => {
     try {
         const userID = await userService.unset(req.body);
         res.status(200).json({ userID })

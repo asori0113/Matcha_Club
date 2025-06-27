@@ -5,7 +5,7 @@ export const useSignup = () => {
     const [status, setStatus] = useState('idle');
     const [error, setError] = useState(null);
 
-    const submit = async (fornData) => {
+    const submit = async (formData) => {
         setStatus('loading');
         setError(null);
         try {

@@ -15,7 +15,7 @@ export const userSignupSchema = Joi.object( {
     email: Joi.string()
     .trim()
     .lowercase()
-    .email({ tolds: { allow: false } })
+    .email({ tlds: { allow: false } })
     .required()
     .messages({
         'string.empty': 'Email is required',
@@ -30,5 +30,3 @@ export const userSignupSchema = Joi.object( {
         'string.password': 'Password should be at least 8 characters long',
     }),
 });
-
-module.exports = { userSignupSchema};
