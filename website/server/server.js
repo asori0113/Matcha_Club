@@ -32,12 +32,12 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 
 // Serce React static files (after building front end)
-app.use(express.static(path.join(__dirname, '../client/build')));
+//app.use(express.static(path.join(__dirname, '../client/build')));
 
 // All requests that serve React app (for client routing)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client', 'index.html'))
-});
+//app.get('*', (req, res) => {
+//    res.sendFile(path.join(__dirname, '../client', 'index.html'))
+//});
 
 // Start server
 const PORT = process.env.PORT || 5000;
