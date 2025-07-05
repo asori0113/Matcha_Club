@@ -16,14 +16,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 
 // Configures personal env file
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, './.env') });
+
+console.log('DEBUG | MONGODB_URI:', process.env.MONGODB_URI);
 
 const app = express();
 
 // Connect to DataBase
 await connectToDB();
 
-app.use(cors());
+app.use(cors( {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
+
+app.options('*', cors());
 
 // Middleware parsing
 app.use(express.json());
@@ -32,7 +40,7 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 
 // Serce React static files (after building front end)
-//app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // All requests that serve React app (for client routing)
 //app.get('*', (req, res) => {
@@ -41,4 +49,4 @@ app.use('/auth', authRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log('Server running on port ${PORT}'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

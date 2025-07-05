@@ -9,4 +9,6 @@ router.post('/signup', validateSignup, signup);
 //router.post('/login', login);
 //router.post('/logout', logout);
 
+application.get('/signup', (request, response) => )
+
 export default router;

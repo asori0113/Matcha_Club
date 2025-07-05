@@ -8,9 +8,9 @@
     "server"
   ],
   "scripts": {
-    "client:start": "cd website/client && npm start",  
+    "client:start": "cd website/client && npm start",
     "server:start": "node website/server/server.js",
-    "start": "concurrently \"npm run client:start\" \"npm run server:start\"",
+    "dev": "concurrently \"npm run client:start\" \"npm run server:start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,9 +27,11 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^16.5.0",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "concurrently": "^9.2.0"
+    "concurrently": "^9.2.0",
+    "tsx": "^4.20.3"
   }
 }
