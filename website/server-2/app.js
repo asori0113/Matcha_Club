@@ -6,7 +6,7 @@ import { PORT } from './config/env.js';
 import userRouter from './routes/user.routes.js';
 import subscriptionRouter from './routes/subscription.routes.js';
 import authRouter from './routes/auth.routes.js';
-import connectToDatabase from './Database/mongoDB.js';
+import connectToDatabase from './database/mongoDB.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
