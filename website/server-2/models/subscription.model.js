@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const subscriptionSchema = new mongoose.Schema({
     name: {
+        type: String,
         required: [true, 'Subscription name is required'],
         trim: true,
         minLength: 2, 
@@ -27,14 +28,22 @@ const subscriptionSchema = new mongoose.Schema({
         required: true,
     },
     paymentMethod: {
-        tpye: String,
+        type: String,
         required: true,
         trim: true,
     },
     status: {
         type: String,
         enum: ['active', 'cancelled', 'expired'],
-        default: 'active' 
+        default: 'active', 
+    },
+    startDate: {
+        type: Date, 
+        required: true,
+        validate: {
+            validator: (value) => value <= new Date(),
+            message: 'Start date must be in the past',
+        }
     },
     renewalDate: {
         type: Date,
