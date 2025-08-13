@@ -12,14 +12,22 @@ const REMINDERS = [7, 5, 2, 1];
 
 export const sendReminders = serve(async (context) => {
     const { subscriptionId } = context.requestPayload;
-    const subscription = await fetchSubscription(context, subscriptionId)
-
-    if (!subscription || subscription.status !== 'active') return;
+    const subscription = await fetchSubscription(context, subscriptionId);
+    console.log("Workflow started for subscription:", subscriptionId);
+    
+    if (!subscription) {
+        console.log("No subscription found");
+        return;
+    }
+    if (subscription.status !== 'active') {
+        console.log("Subscription not active");
+        return;
+    }
 
     const renewalDate = dayjs(subscription.renewalDate);
 
     if(renewalDate.isBefore(dayjs())) {
-        console.log(`Renewal date has passed for subscription ${subscriptionId}. Stopping workflow`)
+        console.log(`Renewal date has passed for subscription ${subscriptionId}. Stopping workflow`);
         return;
     }
 
@@ -30,7 +38,7 @@ export const sendReminders = serve(async (context) => {
             await sleepUntilReminder(context, `Reminder ${daysBefore} days before`, reminderDate);
         }
 
-        await triggerReminder(context, `Reminder${daysBefore} days before`);
+        await triggerReminder(context, `${daysBefore} days before reminder`, subscription);
     }
 
 });
@@ -46,13 +54,14 @@ const sleepUntilReminder = async (context, label, date) => {
     await context.sleepUntil(label, date.toDate());
 } 
 
-const triggerReminder = async (context, label) => {
+const triggerReminder = async (context, label, subscription) => {
     return await context.run(label, async () => {
         console.log(`Triggering ${label} reminder`);
 
         await sendReminderEmail({
             to: subscription.user.email,
-            type: reminder.label.subscription,
+            type: label,
+            subscription
 
         })
     })
