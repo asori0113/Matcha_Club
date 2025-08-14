@@ -22,7 +22,13 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minLength: 6,
 
-    }
+    },
+
+    pinList: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'pin' 
+    }]
+
 }, { timestamps: true })
 
 const User = mongoose.model('User', userSchema);

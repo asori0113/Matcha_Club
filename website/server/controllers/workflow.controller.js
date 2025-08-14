@@ -2,11 +2,10 @@ import dayjs from 'dayjs';
 
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const { serve } = require('@upstash/workflow/express');
+const { serve } = require('../node_modules/@upstash/workflow/express.js');
 
 import Subscription from '../models/subscription.model.js';
 import { sendReminderEmail } from '../utils/send-email.js';
-import { subscribe } from 'diagnostics_channel';
 
 const REMINDERS = [7, 5, 2, 1];
 
@@ -14,7 +13,7 @@ export const sendReminders = serve(async (context) => {
     const { subscriptionId } = context.requestPayload;
     const subscription = await fetchSubscription(context, subscriptionId);
     console.log("Workflow started for subscription:", subscriptionId);
-    
+
     if (!subscription) {
         console.log("No subscription found");
         return;
@@ -61,7 +60,7 @@ const triggerReminder = async (context, label, subscription) => {
         await sendReminderEmail({
             to: subscription.user.email,
             type: label,
-            subscription
+            subscription,
 
         })
     })
