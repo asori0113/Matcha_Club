@@ -10,6 +10,6 @@ authRouter.post('/sign-up', signUp);
 authRouter.post('/sign-in', signIn);
 
 // Path: /api/v1/auth/sign-out (POST)
-authRouter.post('/signout', signOut);
+authRouter.post('/sign-out', signOut);
 
 export default authRouter;

@@ -23,10 +23,9 @@ const userSchema = new mongoose.Schema({
         minLength: 6,
 
     },
-
     pinList: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'pin' 
+        ref: 'Pin' 
     }]
 
 }, { timestamps: true })

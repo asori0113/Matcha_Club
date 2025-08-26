@@ -84,7 +84,7 @@ export const signIn = async (req, res, next) => {
         await session.abortTransaction();
         session.endSession();
         next(error);
-    }
+    }   
 }
 
 export const signOut = async (req, res, next) => {
@@ -92,7 +92,17 @@ export const signOut = async (req, res, next) => {
     session.startTransaction();
 
     try{
-        
+        const user = req.user._id;
+        const token = jwt.sign({ userId: req.user._id }, JWT_SECRET, { expiresIn: 0 });
+
+        res.status(200).json({
+            success: true,
+            message: 'User signed out successfully',
+            data: {
+                token,
+                user,
+            }
+        });
 
     } catch(error) {
         await session.abortTransaction();
