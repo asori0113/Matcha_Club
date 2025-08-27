@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
         minLength: 6,
 
     },
+    hasProfileImage: [{
+        type: String, 
+        imageURL: String
+    }],
     pinList: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Pin' 
